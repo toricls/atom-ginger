@@ -1,0 +1,21 @@
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Correct by Ginger'
+      'command': 'ginger:correct'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Ginger'
+      'submenu': [
+        {
+          'label': 'Correct by Ginger'
+          'command': 'ginger:correct'
+        }
+      ]
+    ]
+  }
+]

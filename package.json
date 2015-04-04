@@ -1,0 +1,19 @@
+{
+  "name": "ginger",
+  "main": "./lib/ginger",
+  "version": "0.0.0",
+  "description": "Checking English grammar by Ginger within Atom Editor.",
+  "repository": "https://github.com/orih/atom-ginger",
+  "author": "Orih",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orih/atom-ginger/issues"
+  },
+  "engines": {
+    "atom": ">=0.189.0 <2.0.0"
+  },
+  "dependencies": {
+    "atom-message-panel": ">=1.2.x",
+    "gingerbread": ">=0.4.x"
+  }
+}
