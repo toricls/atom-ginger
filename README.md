@@ -2,7 +2,7 @@
 
 Checking English grammar by [Ginger Proofreading](http://www.gingersoftware.com/proofreading) within Atom Editor.
 
-![Screenshot](screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/orih/atom-ginger/master/screenshot.png)
 
 ## Usage
 
