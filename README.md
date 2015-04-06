@@ -9,6 +9,10 @@ Checking English grammar by [Ginger Proofreading](http://www.gingersoftware.com/
 - Locate a caret at the sentence you want to correct
 - Press Control + Shift + G
 
+## Configuration
+
+`Replace original text by 'Gingered' text` option is available at package's settings view.
+
 ## Contribution
 
 1. Fork ([https://github.com/orih/atom-ginger/fork](https://github.com/orih/atom-ginger/fork))
