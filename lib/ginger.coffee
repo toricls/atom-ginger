@@ -6,6 +6,18 @@ module.exports =
       type: 'boolean'
       default: false
       order: 1
+    continue:
+      title: 'Automatically Ginger the next line'
+      description: 'Turn on to process lines automatically. This will stop between each paragraph.'
+      type: 'boolean'
+      default: false
+      order: 2
+    popupCorrection:
+      title: 'Show a popup with the corrections suggested by Ginger'
+      description: 'Turn on to show a popup with the corrections suggested by Ginger'
+      type: 'boolean'
+      default: false
+      order: 3
 
   activate: (state) ->
     atom.commands.add 'atom-workspace', 'ginger:correct': => @correct()
@@ -44,7 +56,19 @@ module.exports =
 
       if text == result
         @dispatch.addMessage '<b>完璧やんけ！ It\'s perfect!</b>', 'text-success'
+        if atom.config.get('ginger.continue')
+            cursor.moveToEndOfLine()
+            cursor.moveToBeginningOfNextWord()
+            @correct()
         return
+
+      textForPopup = '';
+
+      for correction in corrections
+        textForPopup += correction.text + ' -> ' + correction.correct + ' @ ' +
+          line + ', ' + correction.start + ' \n '
+        msg = correction.text + ' -> ' + correction.correct
+        @dispatch.addLineMessage msg, line + 1, correction.start
 
       if atom.config.get('ginger.replaceOriginal')
         editor.setTextInBufferRange(range, result)
@@ -52,6 +76,11 @@ module.exports =
       @dispatch.addMessage text + ' --- <b>Original</b>'
       @dispatch.addMessage result + ' --- <b>Gingered</b>'
 
-      for correction in corrections
-        msg = correction.text + ' -> ' + correction.correct
-        @dispatch.addLineMessage msg, line + 1, correction.start
+      if atom.config.get('ginger.popupCorrection')
+        if confirm textForPopup
+            editor.setTextInBufferRange(range, result)
+
+      if atom.config.get('ginger.continue')
+          cursor.moveToEndOfLine()
+          cursor.moveToBeginningOfNextWord()
+          @correct()
